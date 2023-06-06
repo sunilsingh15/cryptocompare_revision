@@ -82,6 +82,12 @@ public class Article {
         this.categories = categories;
     }
 
+    @Override
+    public String toString() {
+        return "Article [id=" + id + ", publishDate=" + publishDate + ", title=" + title + ", url=" + url
+                + ", imageUrl=" + imageUrl + ", body=" + body + ", tags=" + tags + ", categories=" + categories + "]";
+    }
+
     public Article create(String json) throws Exception {
         Article a = new Article();
 
