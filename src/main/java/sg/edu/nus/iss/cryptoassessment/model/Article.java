@@ -108,4 +108,17 @@ public class Article {
         return a;
     }
 
+    public JsonObject toJSON() {
+        return Json.createObjectBuilder()
+        .add("id", this.getId())
+        .add("publishDate", this.getPublishDate())
+        .add("title", this.getTitle())
+        .add("url", this.getUrl())
+        .add("imageUrl", this.getImageUrl())
+        .add("body", this.getBody())
+        .add("tags", this.getTags())
+        .add("categories", this.getCategories())
+        .build();
+    }
+
 }
