@@ -40,7 +40,8 @@ public class NewsService {
         
         int i = 0;
         while (i < 10) {
-            articleList.add(new Article().create(dataArray.get(i).toString()));
+            new Article();
+            articleList.add(Article.create(dataArray.get(i).toString()));
             i++;
         }
     
