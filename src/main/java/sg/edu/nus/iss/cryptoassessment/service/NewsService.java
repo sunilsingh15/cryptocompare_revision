@@ -4,6 +4,7 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -13,9 +14,13 @@ import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
 import sg.edu.nus.iss.cryptoassessment.model.Article;
+import sg.edu.nus.iss.cryptoassessment.repository.NewsRepository;
 
 @Service
 public class NewsService {
+
+    @Autowired
+    private NewsRepository repository;
     
     public List<Article> getArticles() throws Exception {
         String apiUrl = "https://min-api.cryptocompare.com/data/v2/news/?lang=EN";
@@ -40,6 +45,14 @@ public class NewsService {
         }
     
         return articleList;
+    }
+
+    public void saveArticles(List<Article> articleList) {
+
+        for (Article a : articleList) {
+            repository.save(a);
+        }
+
     }
     
 }

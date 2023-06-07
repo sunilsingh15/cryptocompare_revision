@@ -2,12 +2,13 @@ package sg.edu.nus.iss.cryptoassessment.model;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.io.Serializable;
 
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
 
-public class Article {
+public class Article implements Serializable {
 
     private String id;
     private long publishDate;
