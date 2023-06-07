@@ -11,7 +11,7 @@ import jakarta.json.JsonReader;
 public class Article implements Serializable {
 
     private String id;
-    private long publishDate;
+    private long published_on;
     private String title;
     private String url;
     private String imageUrl;
@@ -27,12 +27,12 @@ public class Article implements Serializable {
         this.id = id;
     }
 
-    public long getPublishDate() {
-        return publishDate;
+    public long getPublished_on() {
+        return published_on;
     }
 
-    public void setPublishDate(long publishDate) {
-        this.publishDate = publishDate;
+    public void setPublished_on(long published_on) {
+        this.published_on = published_on;
     }
 
     public String getTitle() {
@@ -85,11 +85,11 @@ public class Article implements Serializable {
 
     @Override
     public String toString() {
-        return "Article [id=" + id + ", publishDate=" + publishDate + ", title=" + title + ", url=" + url
+        return "Article [id=" + id + ", publishDate=" + published_on + ", title=" + title + ", url=" + url
                 + ", imageUrl=" + imageUrl + ", body=" + body + ", tags=" + tags + ", categories=" + categories + "]";
     }
 
-    public Article create(String json) throws Exception {
+    public static Article create(String json) throws Exception {
         Article a = new Article();
 
         try (InputStream is = new ByteArrayInputStream(json.getBytes())) {
@@ -97,7 +97,7 @@ public class Article implements Serializable {
             JsonObject o = r.readObject();
 
             a.setId(o.getString("id"));
-            a.setPublishDate(o.getJsonNumber("published_on").longValue());
+            a.setPublished_on(o.getJsonNumber("published_on").longValue());
             a.setTitle(o.getString("title"));
             a.setUrl(o.getString("url"));
             a.setImageUrl(o.getString("imageurl"));
@@ -112,14 +112,15 @@ public class Article implements Serializable {
     public JsonObject toJSON() {
         return Json.createObjectBuilder()
         .add("id", this.getId())
-        .add("publishDate", this.getPublishDate())
+        .add("published_on", this.getPublished_on())
         .add("title", this.getTitle())
         .add("url", this.getUrl())
-        .add("imageUrl", this.getImageUrl())
+        .add("imageurl", this.getImageUrl())
         .add("body", this.getBody())
         .add("tags", this.getTags())
         .add("categories", this.getCategories())
         .build();
     }
 
+   
 }

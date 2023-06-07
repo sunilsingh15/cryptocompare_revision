@@ -15,5 +15,11 @@ public class NewsRepository {
     public void save(Article article) {
         template.opsForValue().set(article.getId(), article.toJSON().toString());
     }
+
+    public Article get(String articleID) throws Exception {
+       String json = (String) template.opsForValue().get(articleID);
+
+       return Article.create(json);
+    }
     
 }

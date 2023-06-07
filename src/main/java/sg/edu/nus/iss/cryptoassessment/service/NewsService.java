@@ -54,5 +54,9 @@ public class NewsService {
         }
 
     }
+
+    public Article getArticleByID(String articleID) throws Exception {
+        return this.repository.get(articleID);
+    }
     
 }
