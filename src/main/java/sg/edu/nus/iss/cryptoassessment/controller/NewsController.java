@@ -30,7 +30,7 @@ public class NewsController {
     }
 
     @PostMapping(path = "/articles")
-    public String saveSelectedArticles(@RequestParam(value = "selectedArticles") String[] articleIDs) throws Exception {
+    public String saveSelectedArticles(@RequestParam(value = "selectedArticles") String[] articleIDs, Model model) throws Exception {
         
         List<String> articleIDsToSave = Arrays.asList(articleIDs);
         List<Article> articleList = service.getArticles();
@@ -44,7 +44,9 @@ public class NewsController {
         }
 
         service.saveArticles(articleList);
-
+        
+        List<Article> returnList = service.getArticles();
+        model.addAttribute("articles", returnList);
         return "index";
     }
 
